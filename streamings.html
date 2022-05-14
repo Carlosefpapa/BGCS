@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="PT-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="shortcut icon" href="https://www.pucminas.br/SiteAssets/PucIco.ico">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <title>BGCS</title>
+
+    <style>
+        /* Altura de 100% para o conteudo do corpo e/ou HTML */
+        body,
+        html {
+            height: 100%;
+            scroll-behavior: smooth;
+        }
+
+        /* Posiciona o conteúdo para evitar partes brancas abaixo do rodapé */
+        #content {
+            min-height: calc(100vh - 40px);
+        }
+
+        /* Div-Hero. Fundo de imagem personalizado. Div Superior */
+        .abaixo-header {
+            background-color: lightgray;
+            border-bottom: 1px gray;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+            color: white;
+        }
+
+        /* Imagem posicionada dentro da Div-Hero */
+         .img-destaque-abaixo-header {
+            display: inline-block;
+            transition: .5s ease;
+            backface-visibility: hidden;
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            border: gray 1px solid;
+            /* Bloquear seleção do conteúdo pelo mouse/toque */
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            border-radius: 20px;
+        }
+
+        .servicos {
+            margin-top: 20px;
+        }
+
+        #servico {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.26), 0 6px 20px 0 rgba(0, 0, 0, 0.26);
+        }
+
+        #ondeassistir {
+            margin-bottom: 10px;
+            padding: 6px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.26), 0 6px 20px 0 rgb(0, 0, 0, 0.26);
+            /* Bloquear seleção do conteúdo pelo mouse/toque */
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+
+        }
+
+        #servico:hover {
+            cursor: pointer;
+            transition: 0.3s;
+            opacity: 0.7;
+        }
+
+        .iframe-abaixo-header {
+            max-width: 900px;
+            box-shadow: 0 4px 8px 0 rgb(0, 0, 0), 0 6px 20px 0 rgb(0, 0, 0);
+
+        }
+
+        #containerposter {
+            padding-top: 50px;
+            padding-bottom: 60px;
+        }
+
+        @media only screen and (max-width: 850px) {
+            .iframe-abaixo-header {
+                width: 560px;
+                height: 250px;
+                max-width: fit-content;
+                max-height: fit-content;
+            }
+
+            #poster {
+                width: 300px;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .botoesint {
+                text-align: center;
+            }
+
+            #containerposter {
+                padding-top: 20px;
+            }
+
+        }
+
+        #poster {
+            max-width: 500px;
+            max-height: 800px;
+            text-align: center;
+            box-shadow: 0 4px 8px 0 rgb(0, 0, 0), 0 6px 20px 0 rgb(0, 0, 0);
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        #poster:hover {
+            opacity: 0.7;
+        }
+
+        /* Modal (background) */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            padding-top: 100px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        /* Modal Content (Image) */
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 70%;
+            max-width: 700px;
+        }
+
+        /* Legenda da Imagem Modal - Width da Imagem */
+        #caption {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+            text-align: center;
+            color: #ccc;
+            padding: 10px 0;
+            height: 150px;
+        }
+
+        /* Animação de zoom do modal */
+        .modal-content,
+        #caption {
+            animation-name: zoom;
+            animation-duration: 0.6s;
+        }
+
+        @keyframes zoom {
+            from {
+                transform: scale(0)
+            }
+
+            to {
+                transform: scale(1)
+            }
+        }
+
+        /* Botão de Fechar do Modal */
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Imagem 100% de Tamanho em Telas Menores */
+        @media only screen and (max-width: 700px) {
+            .modal-content {
+                width: 100%;
+            }
+        }
+
+        .checked {
+            color: orange;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="content">
+        <!-- Menu de navegação superior -->
+        <nav class="navbar navbar-light bg-light">
+            <a class="navbar-brand" href="index.html">
+                <img src="https://www.pucminas.br/Style%20Library/STATIC/img/brasao-peq.png" width="30" height="30"
+                    class="d-inline-block align-top" alt="">
+                LOGO
+            </a>
+            <a href="signin.html"><button class="btn btn-primary" type="submit" id="botaologin">Login</button></a>
+        </nav>
+        <!-- Div Superior estilo Hero, imagem destaque e texto-->
+        <div class="abaixo-header" id="topo">
+            <div id="trailer">
+            </div>
+            <br>
+            <div class="servicos">
+                <span class="badge badge-pill badge-primary" id="ondeassistir">Onde Assistir</span> <br>
+                <div id="servicos_lista">
+
+                </div>
+            </div>
+        </div>
+        <div class="container" id="containerposter">
+            <div class="row">
+                <div class="col" style="position: relative;">
+                    <div id="posterfullsize">
+
+                    </div>
+                    <!-- Modal do Poster -->
+                    <div id="myModal" class="modal">
+                        <!-- Botão de Fechar -->
+                        <span class="close">&times;</span>
+                        <!-- Conteúdo do Modal (Poster em Si) -->
+                        <img class="modal-content" id="img01">
+                        <!-- Legenda do Modal (texto alt da img src) -->
+                        <div id="caption"></div>
+                    </div>
+                </div>
+                <script>
+                    // Pega o modal
+                    var modal = document.getElementById("myModal");
+
+                    var img = document.getElementById("poster");
+                    var modalImg = document.getElementById("img01");
+                    var captionText = document.getElementById("caption");
+                    img.onclick = function () {
+                        modal.style.display = "block";
+                        modalImg.src = this.src;
+                        captionText.innerHTML = this.alt;
+                    }
+
+                    var span = document.getElementsByClassName("close")[0];
+
+                    span.onclick = function () {
+                        modal.style.display = "none";
+                    }
+                </script>
+                <div class="col" style="padding-top: 20px; position: relative;">
+                    <div id="detalhesfilme_streaming">
+
+                    </div>
+                    <div class="botoesint">
+                        <a class="btn btn-primary" href="#topo" role="button">Assista Agora</a>
+                        <button type="button" class="btn btn-success"
+                            onclick="copiarParaAreaTransferencia()">Compartilhar</button>
+                        <a id="voltar" class="btn btn-warning" href="detalhes.html" role="button">Voltar para Detalhes</a>
+                    </div>
+                    <script>
+                        function copiarParaAreaTransferencia(text) {
+                            var inputc = document.body.appendChild(document.createElement("input"));
+                            inputc.value = window.location.href;
+                            inputc.focus();
+                            inputc.select();
+                            document.execCommand('copy');
+                            inputc.parentNode.removeChild(inputc);
+                            alert("URL do site copiada.");
+                        }
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Rodapé -->
+    <footer class="bg-light text-center text-lg-start" style="bottom: 0; width: 100%; height: 20px;">
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            © 2021 Copyright:
+            <a class="text-dark" href="index.html">Busca Global em Catálogo de Streaming</a>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>

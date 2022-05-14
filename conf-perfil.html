@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="PT-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css"
+    rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <link rel="shortcut icon" href="https://www.pucminas.br/SiteAssets/PucIco.ico">
+  <title>Configurações da Conta</title>
+
+  <style>
+    /* Altura de 100% para o conteudo do corpo e/ou HTML */
+    body,
+    html {
+      height: 100%;
+      scroll-behavior: smooth;
+    }
+
+    /* Posiciona o conteúdo para evitar partes brancas abaixo do rodapé */
+    #content {
+      min-height: calc(100vh - 40px);
+    }
+
+    /* Posionamento do botão dentro da imagem */
+    .middle {
+      transition: .5s ease;
+      opacity: 0;
+      position: absolute;
+      top: 55%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      text-align: center;
+    }
+
+    /* Interação ao passar o mouse sobre a imagem e botão */
+    .abaixo-header:hover .middle {
+      opacity: 1;
+    }
+
+    /* Interação ao passar o mouse sobre a imagem */
+    .img-destaque-abaixo-header:hover {
+      opacity: 0.8;
+    }
+
+    /* Imagem responsiva */
+    .carousel-inner img {
+      width: 100%;
+      height: 100%;
+      min-width: 100%;
+    }
+
+    body {
+      background: #f5f5f5;
+      background: linear-gradient(to right, #cecece, #4c608b);
+      min-height: 100vh;
+      overflow-x: hidden
+    }
+
+    .ui-w-80 {
+      width: 80px !important;
+      height: auto;
+    }
+
+    .btn-default {
+      border-color: rgba(200, 214, 231, 0.1);
+      background: rgba(175, 199, 243, 0.61);
+      color: #575757;
+    }
+
+    label.btn {
+      margin-bottom: 0;
+    }
+
+    .btn-outline-primary {
+      border-color: #26B4FF;
+      background: transparent;
+      color: #26B4FF;
+    }
+
+    .btn {
+      cursor: pointer;
+    }
+
+    .text-light {
+      color: #babbbc !important;
+    }
+
+    .btn-facebook {
+      border-color: rgba(0, 0, 0, 0);
+      background: #3B5998;
+      color: #fff;
+    }
+
+    .btn-instagram {
+      border-color: rgba(0, 0, 0, 0);
+      background: #000;
+      color: #fff;
+    }
+
+    .card {
+      background-clip: padding-box;
+      box-shadow: 0 1px 4px rgba(24, 28, 33, 0.012);
+    }
+
+    .row-bordered {
+      overflow: hidden;
+    }
+
+    .account-settings-fileinput {
+      position: absolute;
+      visibility: hidden;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+    }
+
+    .account-settings-links .list-group-item.active {
+      font-weight: bold !important;
+    }
+
+    html:not(.dark-style) .account-settings-links .list-group-item.active {
+      background: transparent !important;
+    }
+
+    .account-settings-multiselect~.select2-container {
+      width: 100% !important;
+    }
+
+    .light-style .account-settings-links .list-group-item {
+      padding: 0.85rem 1.5rem;
+      border-color: rgba(24, 28, 33, 0.03) !important;
+    }
+
+    .light-style .account-settings-links .list-group-item.active {
+      color: #4e5155 !important;
+    }
+
+    .material-style .account-settings-links .list-group-item {
+      padding: 0.85rem 1.5rem;
+      border-color: rgba(24, 28, 33, 0.03) !important;
+    }
+
+    .material-style .account-settings-links .list-group-item.active {
+      color: #4e5155 !important;
+    }
+
+    .dark-style .account-settings-links .list-group-item {
+      padding: 0.85rem 1.5rem;
+      border-color: rgba(255, 255, 255, 0.03) !important;
+    }
+
+    .dark-style .account-settings-links .list-group-item.active {
+      color: #fff !important;
+    }
+
+    .light-style .account-settings-links .list-group-item.active {
+      color: #4E5155 !important;
+    }
+
+    .light-style .account-settings-links .list-group-item {
+      padding: 0.85rem 1.5rem;
+      border-color: rgba(24, 28, 33, 0.03) !important;
+    }
+
+    #btncancel {
+      float: right;
+      margin-right: 40px;
+      margin-top: 10px;
+      margin-bottom: 20px;
+    }
+
+    #btnsalvar {
+      float: right;
+      margin-right: 2px;
+      margin-top: 10px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Menu de navegação superior -->
+  <nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand" href="index.html">
+      <img src="https://www.pucminas.br/Style%20Library/STATIC/img/brasao-peq.png" width="30" height="30"
+        class="d-inline-block align-top" alt="">
+      LOGO
+    </a>
+  </nav>
+  <div class="container light-style flex-grow-1 container-p-y">
+
+
+
+
+
+
+    <div class="card overflow-hidden">
+
+
+      <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="accountSettings.html">Configurações</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="accountSettings.html">Conta</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="conf-perfil.html">Perfil</a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- 
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <a class="navbar-brand" href="#">Configurações</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item active">
+                <a class="nav-link" href="accountSettings.html">Conta <span class="sr-only">(current)</span></a>
+              </li>
+    
+              <li class="nav-item">
+                <a class="nav-link" href="#config-user">Perfil</a>
+              </li>
+              
+            </ul>
+          </div>
+        </nav>
+        -->
+
+      <div class="row no-gutters row-bordered row-border-light">
+        <div class="col-md-3 pt-0">
+          <div class="list-group list-group-flush account-settings-links">
+            <a class="list-group-item list-group-item-action active" data-toggle="list"
+              href="#config-user">Configurações do Perfil</a>
+          </div>
+        </div>
+        <div class="col-md-9">
+          <div class="tab-content">
+
+            <div class="tab-pane fade active show" id="config-user">
+              <div class="card-body pb-2">
+
+                <h6 class="mb-4">Conteúdo</h6>
+
+                <div class="custom-control custom-switch">
+                  <input type="checkbox" class="custom-control-input" id="customSwitches">
+                  <label class="custom-control-label" for="customSwitches">Infantil</label>
+                </div>
+              </div>
+
+            </div>
+
+
+            <hr class="border-light m-0">
+            <div class="card-body pb-2">
+
+            </div>
+
+            <div class="text-right mt-3">
+              <a href="index.html"><button type="button" class="btn btn-default" id="btncancel">Cancelar</button></a>
+              <button type="button" class="btn btn-primary" id="btnsalvar">Salvar</button>&nbsp;
+
+            </div>
+          </div>
+
+
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  </div>
+  <!-- Rodapé -->
+  <footer class="bg-light text-center text-lg-start" style="bottom: 0; width: 100%; height: 20px; position: absolute;">
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+      © 2021 Copyright:
+      <a class="text-dark" href="index.html">Busca Global em Catálogo de Streaming</a>
+    </div>
+  </footer>
+</body>
+
+</html>
